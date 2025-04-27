@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  postgress:
+    image: 'postgress:latest'
+
+  redis:
+    image: "redis:latest"
+    
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+
+  server:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+
+  
