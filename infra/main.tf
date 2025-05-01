@@ -1,7 +1,6 @@
 ### creating ECR and ECS on aws using module terraform
 
 /* Module for IAM Role */
-
 module "web_iam_role" {
   source          = "./module/iam-role"
   iam_assume_role = "web_assume_iam_role"
