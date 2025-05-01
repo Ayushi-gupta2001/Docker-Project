@@ -3,19 +3,36 @@ version: '3'
 services:
 
   postgress:
+    container_name: postgress_container
     image: 'postgress:latest'
-
-  redis:
-    image: "redis:latest"
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=newpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=pernstore
+      - POSTGRES_PORT=5432
     
   client:
+    container_name: client_container
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./client 
+    image: ayushi/client_image
+    volumes:
+      - /app/node_modules
+      - ./client:/app/client
+    env_file: ./client/client.env
 
   server:
+    container_name: server_container
+    image: ayushi/server_image
     build:
       dockerfile: Dockerfile.dev
       context: ./server
-
+    volumes:
+      - /app/node_modules
+      - ./server:/app/server
+    ports:
+      - "9000:9000"
+    env_file: ./server/server.env
   

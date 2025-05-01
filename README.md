@@ -6,7 +6,6 @@
 1. AWS Account 
 2. Docker Hub Account 
 
-
 #######
 
 ### Steps:
@@ -44,3 +43,10 @@
     ```
 
   2. Clone the Repo
+    ```
+     https://github.com/Ayushi-gupta2001/Docker-Project.git
+    ```
+
+  3. Installtion of terraform
+
+
