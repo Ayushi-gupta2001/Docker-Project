@@ -1,52 +1,38 @@
-## E-COMMERCE WEBSITE application using GITHUB ACTIONS, Terraform, Docker and AWS ECR, ECS
+# 🚀 E-Commerce Website Deployment using GitHub Actions, Terraform, Docker, AWS ECR & ECS
 
+## 🛠️ Prerequisites
 
-### Pre-requisite
+- AWS Account with required IAM permissions  
+- Jenkins installed and running  
+- GitHub repository with application code  
 
-1. AWS Account 
-2. Docker Hub Account 
+---
 
-#######
+## 📋 Setup Instructions
 
-### Steps:
+### 1. Install Jenkins  
+- Launch Jenkins on your server or local machine:  
+  - Remote: `http://<your-ip>:8080`  
+  - Local: `http://localhost:8080`
 
-1. Installtion of Docker
+### 2. Create Jenkins Pipeline  
+- Open Jenkins UI and create a new pipeline job.
 
-    ```
-    sudo apt update
-    sudo apt upgrade -y
+### 3. Configure AWS Credentials  
+- Create an IAM user with programmatic access.  
+- Add the credentials securely to Jenkins using **Credentials Manager**.
 
-    sudo apt install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
+### 4. Connect GitHub Repository  
+- Set your GitHub repository URL in the pipeline configuration.  
+- Enable **Poll SCM** with this schedule:  
 
-    sudo mkdir -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+(checks for updates every minute)
 
-    echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+### 5. Trigger the Pipeline  
+- Clone the repository locally.  
+- Make changes and push to GitHub.  
+- Jenkins will auto-trigger the pipeline.
 
-    sudo apt update
-    sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-    sudo usermod -aG docker $USER
-
-    sudo systemctl start docker
-
-    **Test the docker by running command:
-    docker run hello-world
-    docker --version
-
-    ```
-
-  2. Clone the Repo
-    ```
-     https://github.com/Ayushi-gupta2001/Docker-Project.git
-    ```
-
-  3. Installtion of terraform
-
-
+### 6. Access the Deployed Application  
+- After deployment, access your app via:  
+  `http://load-balancer-dns-name:8080`
