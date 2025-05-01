@@ -1,4 +1,4 @@
-# 🚀 E-Commerce Website Deployment using GitHub Actions, Terraform, Docker, AWS ECR & ECS
+# 🚀 E-Commerce Website Deployment using Jenkins, Terraform, Docker, AWS ECR & ECS
 
 ## 🛠️ Prerequisites
 
