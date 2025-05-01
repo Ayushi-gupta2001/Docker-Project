@@ -11,6 +11,20 @@
 ## 📋 Setup Instructions
 
 ### 1. Install Jenkins  
+
+- Run the following commands on your Ubuntu-based system:
+```bash
+    1. sudo apt update && sudo apt upgrade -y
+    2. sudo apt install -y fontconfig openjdk-17-jre
+    3. java -version
+    4. wget -O - https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+    5. echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+    6. sudo apt update
+    7. sudo apt install -y jenkins
+    8. sudo systemctl enable --now jenkins
+    9. sudo systemctl status jenkins
+```
+
 - Launch Jenkins on your server or local machine:  
   - Remote: `http://<your-ip>:8080`  
   - Local: `http://localhost:8080`
