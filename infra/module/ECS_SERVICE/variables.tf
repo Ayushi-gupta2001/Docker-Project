@@ -22,3 +22,25 @@ variable "containers" {
     host_path = string
   }))
 }
+
+variable "subnet" {
+  type = string
+}
+
+variable "security_groups" {
+  type = string
+}
+
+variable "lb_listener_group" {
+  type = string
+}
+
+variable "task_defination" {
+  type = map(object({
+    task_defination = string
+  }))
+}
+
+variable "container_name" {
+  type = string
+}

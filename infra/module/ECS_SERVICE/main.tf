@@ -51,8 +51,19 @@ resource "aws_ecs_task_definition" "web_task_defination" {
 resource "aws_ecs_service" "web_service" {
   name             = var.ecs_service
   cluster          = aws_ecs_cluster.ecs_cluster.id
-  task_definition = aws_ecs_task_definition.web_task_defination.arn
-  desired_count    = 3
   iam_role         = var.iam_role
   depends_on       = [var.iam_role]
+  for_each = var.task_defination
+  task_definition = each.value.task_defination
+
+  network_configuration {
+    subnets = [var.subnet]
+    security_groups = [var.security_groups]
+  }
+
+  load_balancer {
+    target_group_arn = var.lb_listener_group
+    container_name = module.web_ecs_service.web_ecs_task_defination
+    container_port = 3000
+  }
 }
