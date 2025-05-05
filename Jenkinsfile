@@ -18,8 +18,8 @@ pipeline {
         {
             steps {
                 script(
-                    clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", "./client")
-                    serverImage = docker.build("${SERVER_IMAGE_NAME}:${SERVER_IMAGE_TAG}", "./server")
+                    def clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", "./client")
+                    def serverImage = docker.build("${SERVER_IMAGE_NAME}:${SERVER_IMAGE_TAG}", "./server")
                 )
             }
         }
