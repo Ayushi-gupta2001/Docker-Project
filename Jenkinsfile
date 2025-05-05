@@ -15,9 +15,7 @@ pipeline {
     }
 
     stages {
-        stage('1. Build docker image for client and server')
-        {
-
+        stage('1. Build docker image for client and server') {
             steps {
                 script {
                     clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", './client')
@@ -36,8 +34,7 @@ pipeline {
             }
         }
 
-        stage('3. Login into ECR')
-        {
+        stage('3. Login into ECR') {
             steps {
                 sh '''
                 aws ecr get-login-password --region $AWS_REGION | \
@@ -50,7 +47,7 @@ pipeline {
         stage('4. Tag and push docker image to ECR') {
             steps {
                 script {
-                    
+
                     def ecrClientImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_NAME_TAG}"
                     def ecrServerImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${SERVER_IMAGE_NAME}:${SERVER_IMAGE_NAME_TAG}"
 
@@ -64,10 +61,8 @@ pipeline {
             }
         }
 
-        stage('5. Provision the infra for ECS cluster')
-        {
-            step
-            {
+        stage('5. Provision the infra for ECS cluster') {
+            steps {
                 sh '''
                 cd ./infra
                 terraform init
