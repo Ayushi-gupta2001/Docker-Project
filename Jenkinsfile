@@ -1,5 +1,6 @@
-pipeline {  
-
+def clientImage
+def serverImage
+pipeline {
     agent any
 
     environment {
@@ -10,21 +11,22 @@ pipeline {
         CLIENT_IMAGE_NAME = 'client_image'
         CLIENT_IMAGE_TAG = 'latest'
         SERVER_IMAGE_NAME = 'server_image'
-        SERVER_IMAGE_TAG = "latest"
+        SERVER_IMAGE_TAG = 'latest'
     }
 
-    stages{
-        stage("1. Build docker image for client and server") 
+    stages {
+        stage('1. Build docker image for client and server')
         {
+
             steps {
-                script(
-                    def clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", "./client")
-                    def serverImage = docker.build("${SERVER_IMAGE_NAME}:${SERVER_IMAGE_TAG}", "./server")
-                )
+                script {
+                    clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", './client')
+                    serverImage = docker.build("${SERVER_IMAGE_NAME}:${SERVER_IMAGE_TAG}", './server')
+                }
             }
         }
 
-        stage("2. Create ECR repo into AWS using terraform") {
+        stage('2. Create ECR repo into AWS using terraform') {
             steps {
                 sh '''
                 cd ./infra
@@ -34,7 +36,7 @@ pipeline {
             }
         }
 
-        stage("3. Login into ECR")
+        stage('3. Login into ECR')
         {
             steps {
                 sh '''
@@ -45,25 +47,26 @@ pipeline {
             }
         }
 
-        stage ("4. Tag and push docker image to ECR")
-        {
-            steps 
-            {
-                ecrClientImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_NAME_TAG}"
-                ecrServerImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${SERVER_IMAGE_NAME}:${SERVER_IMAGE_NAME_TAG}"
+        stage('4. Tag and push docker image to ECR') {
+            steps {
+                script {
+                    
+                    def ecrClientImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_NAME_TAG}"
+                    def ecrServerImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${SERVER_IMAGE_NAME}:${SERVER_IMAGE_NAME_TAG}"
 
-                clientImage.tag(ecrClientImageName)
-                serverImage.tag(ecrServerImageName)
+                    clientImage.tag(ecrClientImageName)
+                    serverImage.tag(ecrServerImageName)
 
-                clientImage.push(ecrClientImageName)
-                serverImage.push(ecrServerImageName)
+                    clientImage.push(ecrClientImageName)
+                    serverImage.push(ecrServerImageName)
+                }
 
             }
         }
 
-        stage ("5. Provision the infra for ECS cluster")
+        stage('5. Provision the infra for ECS cluster')
         {
-            step 
+            step
             {
                 sh '''
                 cd ./infra
@@ -76,7 +79,7 @@ pipeline {
 
     post {
         always {
-            echo "Pipeline execution complete"
+            echo 'Pipeline execution complete'
         }
     }
 
