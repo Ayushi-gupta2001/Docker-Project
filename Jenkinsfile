@@ -1,5 +1,6 @@
 def clientImage
 def serverImage
+
 pipeline {
     agent any
 
@@ -17,11 +18,11 @@ pipeline {
     stages {
         stage('1. Build docker image for client and server') {
             steps {
-                script {
                     echo 'building docker image...'
-                    clientImage = docker.build("${CLIENT_IMAGE_NAME}:${CLIENT_IMAGE_TAG}", './client')
-                    serverImage = docker.build("${SERVER_IMAGE_NAME}:${SERVER_IMAGE_TAG}", './server')
-                }
+                    sh '''
+                    cd ./client
+                    docker build -t client:latest .
+                    '''
             }
         }
 
