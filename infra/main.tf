@@ -9,6 +9,12 @@ module "web_iam_role" {
   sns_topic       = "web_sns_topic"
 }
 
+/* Module for ECR Image creation */
+module "web_ecr_image" {
+  source         = "./module/ECR_CLUSTER"
+  ecr_image_repo = "web_ecs_image_repo"
+}
+
 /* Module for ECS Service creation */
 module "web_ecs_service" {
   source      = "./module/ECS_TASK_DEFINATION"
@@ -60,16 +66,6 @@ module "web_ecs_service" {
   lb_listener_group = module.web_load_balancer.web_lb_target_group
 }
 
-/* Module for ECR Image creation */
-module "web_ecr_image" {
-  source         = "./module/ECR_CLUSTER"
-  ecr_image_repo = "web_ecs_image_repo"
-  image_tag = {
-    client = "client"
-    server = "server"
-  }
-}
-
 /* Module for VPC */
 module "web_vpc" {
     source = "./module/VPC"
@@ -92,5 +88,5 @@ module "web_load_balancer" {
     name = "web_load_balancer"
     security_groups = module.web_security_group.security_group
     subnets = module.
-  
+
 }

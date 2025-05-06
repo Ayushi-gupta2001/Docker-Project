@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket       = "my-docker-bucket"
+    bucket       = "my-docker-bucket-1"
     key          = "prod/aws_docker"
     region       = "us-east-1"
     use_lockfile = true

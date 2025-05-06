@@ -4,11 +4,12 @@ resource "aws_ecs_cluster" "web_ecs_clutser" {
 }
 
 /* ECS Task Defination */
+/* This task definition will create one task definition per container */
 resource "aws_ecs_task_definition" "web_task_defination" {
   requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = "1024"  ## 1Vcpu
-  memory                   = "2048"  ## 2 GB
+  network_mode             = "awsvpc" // i will check it
+  cpu                      = 10
+  memory                   = 512
   for_each                 = var.containers
   family                   = each.value.task_defination
   container_definitions = jsonencode(
@@ -16,8 +17,8 @@ resource "aws_ecs_task_definition" "web_task_defination" {
       {
         name      = each.value.container_name
         image     = each.value.ecr_image
-        cpu       = 341
-        memory    = 683
+        cpu       = 10
+        memory    = 512
         essential = true
         portMappings = [
           {
