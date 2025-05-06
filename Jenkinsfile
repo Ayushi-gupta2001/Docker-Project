@@ -46,8 +46,8 @@ pipeline {
             steps {
                 script {
                     echo "Tag and push docker image to ECR"
-                    def ecrClientImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/client:latest"
-                    def ecrServerImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/server:latest"
+                    def ecrClientImageName = "${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/client:latest"
+                    def ecrServerImageName = "${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/server:latest"
 
                     clientImage.tag(ecrClientImageName)
                     serverImage.tag(ecrServerImageName)
