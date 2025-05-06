@@ -13,11 +13,11 @@ module "web_iam_role" {
 module "web_ecr_image" {
   source         = "./module/ECR_IMAGE"
   ecr_image_repo = "web_ecs_image_repo"
-}
+} 
 
 /* Module for ECS Service creation */
 module "web_ecs_service" {
-  source      = "./module/ECS_TASK_DEFINATION"
+  source      = "./module/ECS_SERVICE"
   ecs_cluster = "web_ecs_cluster"
   ecs_service = "web_ecs_service"
   iam_role    = module.web_iam_role.web_iam_role_ecs
@@ -64,6 +64,7 @@ module "web_ecs_service" {
     }
   }
   lb_listener_group = module.web_load_balancer.web_lb_target_group
+  container_name = "swde"
 }
 
 /* Module for VPC */
@@ -83,10 +84,10 @@ module "web_security_group" {
 }
 
 /* Module for load_balancer */
-module "web_load_balancer" {
-    source = "./module/load-balancer"
-    name = "web_load_balancer"
-    security_groups = module.web_security_group.security_group
-    subnets = module.
+# module "web_load_balancer" {
+#     source = "./module/load-balancer"
+#     name = "web_load_balancer"
+#     security_groups = module.web_security_group.security_group
+#     subnets = module.
 
-}
+# }
