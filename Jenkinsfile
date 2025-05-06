@@ -49,13 +49,12 @@ pipeline {
                     def ecrClientImageName = "${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/web_ecs_image_repo:latest"
                     def ecrServerImageName = "${env.AWS_ACCOUNT_ID}.dkr.ecr.${env.AWS_REGION}.amazonaws.com/web_ecs_image_repo:latest"
 
-                    clientImage.tag(ecrClientImageName)
-                    serverImage.tag(ecrServerImageName)
+                    clientImage.tag(ecrClientImageName, "client-latest")
+                    serverImage.tag(ecrServerImageName, "server-latest" )
 
-                    clientImage.push(ecrClientImageName)
-                    serverImage.push(ecrServerImageName)
+                    clientImage.push("client-latest")
+                    serverImage.push("server-latest")
                 }
-
             }
         }
 
