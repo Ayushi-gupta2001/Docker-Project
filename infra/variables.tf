@@ -12,7 +12,3 @@ variable "server_env" {
   type        = map(string)
   description = "Envoirnemt variable for server container"
 }
-
-variable "web_ecs_service_container_name" {
-    type = string
-}
