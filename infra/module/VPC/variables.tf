@@ -2,7 +2,7 @@ variable "vpc" {
   type = string
 }
 
-variable "route_tables" {
+variable "route_table" {
   type = string
 }
 

@@ -38,7 +38,7 @@ client_env = {
 
 database_env = {
   # Postgres database local connection
-  POSTGRES_USER = postgres
+  POSTGRES_USER = "postgres"
   # Postgres host (default: localhost)
   POSTGRES_HOST     = "3.84.191.228"
   POSTGRES_PASSWORD = "newpassword"

@@ -1,5 +1,6 @@
 /* IAM Role and IAM POlicy attach to ECS */
 
+/* IAM Assume Role Policy */
 resource "aws_iam_role" "web_assume_iam_role" {
   name = var.iam_assume_role
 
@@ -21,9 +22,10 @@ resource "aws_iam_role" "web_assume_iam_role" {
 
 }
 
+/* IAM Role */
 resource "aws_iam_role" "web_iam_role" {
   name               = var.iam_role
-  assume_role_policy = aws_iam_role.iam_assume_role.arn
+  assume_role_policy = aws_iam_role.web_assume_iam_role.arn
 
   inline_policy {
     name = var.inline_policy

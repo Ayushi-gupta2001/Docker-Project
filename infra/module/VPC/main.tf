@@ -23,7 +23,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 /* Route table */
-resource "aws_route_tables" "route_table" {
+resource "aws_route_table" "route_table" {
   vpc_id = aws.vpc.id
 
   route {

@@ -68,20 +68,20 @@ module "web_ecr_image" {
 # }
 
 /* Module for VPC */
-module "web_vpc" {
-    source = "./module/VPC"
-    vpc = "web_vpc"
-    route_tables = "web_route_tables"
-    public_subent = "web_public_subnet"
-    internet_gateway = "web_internet_gateway"
-}
+# module "web_vpc" {
+#     source = "./module/VPC"
+#     vpc = "web_vpc"
+#     route_table = "web_route_tables"
+#     public_subent = "web_public_subnet"
+#     internet_gateway = "web_internet_gateway"
+# }
 
 /* Module for security group*/
-module "web_security_group" {
-    source = "./module/security-group"
-    vpc_id = module.web_vpc.vpc_id
-    security_group = "web_security_group"
-}
+# module "web_security_group" {
+#     source = "./module/security-group"
+#     vpc_id = module.web_vpc.vpc_id
+#     security_group = "web_security_group"
+# }
 
 /* Module for load_balancer */
 # module "web_load_balancer" {
