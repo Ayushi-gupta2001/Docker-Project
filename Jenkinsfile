@@ -34,6 +34,7 @@ pipeline {
         stage('3. Login into ECR') {
             steps {
                 sh '''
+                echo "Login into ECR"
                 aws ecr get-login-password --region $AWS_REGION | \
                 docker login --username AWS --password-stdin \
                 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
@@ -44,6 +45,7 @@ pipeline {
         stage('4. Tag and push docker image to ECR') {
             steps {
                 script {
+                    echo "Tag and push docker image to ECR"
                     def ecrClientImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/client:latest"
                     def ecrServerImageName = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/server:latest"
 
