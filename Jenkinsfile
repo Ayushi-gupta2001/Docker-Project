@@ -57,7 +57,6 @@ pipeline {
                     '''
                 }
             }
-        }
 
         // stage('5. Provision the infra for ECS cluster') {
         //     steps {
@@ -75,5 +74,4 @@ pipeline {
             echo 'Pipeline execution complete'
         }
     }
-
 }
