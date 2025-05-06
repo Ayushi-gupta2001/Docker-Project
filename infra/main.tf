@@ -11,7 +11,7 @@ module "web_iam_role" {
 
 /* Module for ECR Image creation */
 module "web_ecr_image" {
-  source         = "./module/ECR_CLUSTER"
+  source         = "./module/ECR_IMAGE"
   ecr_image_repo = "web_ecs_image_repo"
 }
 
