@@ -4,7 +4,6 @@
 module "web_iam_role" {
   source            = "./module/iam-role"
   iam_assume_role   = "web_assume_iam_role"
-  iam_role          = "web_iam_role"
   iam_inline_policy = "web_iam_inline_policy"
   sns_topic         = "web_sns_topic"
 }
