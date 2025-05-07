@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh '''
                     echo 'Tag and push docker image to ECR...'
-                    ECR_REPO="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+                    ECR_REPO="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/web_ecs_image_repo"
 
                     docker tag client:latest ${ECR_REPO}:client_latest
                     docker tag server:latest ${ECR_REPO}:server_latest
