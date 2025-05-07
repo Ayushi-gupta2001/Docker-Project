@@ -10,6 +10,6 @@ variable "sns_topic" {
   type = string
 }
 
-variable "inline_policy" {
-    type = string
+variable "iam_inline_policy" {
+  type = string
 }

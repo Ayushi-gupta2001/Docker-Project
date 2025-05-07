@@ -2,18 +2,18 @@
 
 /* Module for IAM Role */
 module "web_iam_role" {
-  source          = "./module/iam-role"
-  iam_assume_role = "web_assume_iam_role"
-  iam_role        = "web_iam_role"
-  inline_policy   = "web_inline_policy"
-  sns_topic       = "web_sns_topic"
+  source            = "./module/iam-role"
+  iam_assume_role   = "web_assume_iam_role"
+  iam_role          = "web_iam_role"
+  iam_inline_policy = "web_iam_inline_policy"
+  sns_topic         = "web_sns_topic"
 }
 
 /* Module for ECR Image creation */
 module "web_ecr_image" {
   source         = "./module/ECR_IMAGE"
   ecr_image_repo = "web_ecs_image_repo"
-} 
+}
 
 /* Module for ECS Service creation */
 # module "web_ecs_service" {
