@@ -58,15 +58,15 @@ pipeline {
                 }
             }
 
-        // stage('5. Provision the infra for ECS cluster') {
-        //     steps {
-        //         sh '''
-        //         cd ./infra
-        //         terraform init
-        //         terraform apply --auto-approve
-        //         '''
-        //     }
-        // }
+        stage('5. Provision the infra for ECS cluster') {
+            steps {
+                sh '''
+                cd ./infra
+                terraform init
+                terraform apply --auto-approve
+                '''
+            }
+        }
     }
 
     post {
