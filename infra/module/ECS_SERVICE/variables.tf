@@ -1,13 +1,13 @@
 variable "ecs_cluster" {
-    type = string
-}
-
-variable "ecs_service" {
-    type = string
+  type = string
 }
 
 variable "iam_role" {
-    type = string
+  type = string
+}
+
+variable "iam_role_policy" {
+  type = string
 }
 
 variable "containers" {
@@ -17,30 +17,24 @@ variable "containers" {
     ecr_image       = string
     host_port       = optional(number)
     container_port  = optional(number)
-    environment = map(string)
-    volume_storage = string
-    host_path = string
+    environment     = map(string)
+    volume_storage  = string
+    service_name    = string
   }))
 }
 
-variable "subnet" {
-  type = string
-}
+# variable "subnet" {
+#   type = string
+# }
 
-variable "security_groups" {
-  type = string
-}
+# variable "security_groups" {
+#   type = string
+# }
 
-variable "lb_listener_group" {
-  type = string
-}
+# variable "lb_listener_group" {
+#   type = string
+# }
 
-variable "task_defination" {
-  type = map(object({
-    task_defination = string
-  }))
-}
-
-variable "container_name" {
-  type = string
-}
+# variable "container_name" {
+#   type = string
+# }
