@@ -5,7 +5,7 @@ resource "aws_ecr_repository" "ecs_image_repo" {
 }
 
 data "aws_ecr_image" "web_ecr_images" {
-  for_each = var.image_tag
+  for_each = toset(var.image_tag) ## making it uniqueness
   repository_name = aws_ecr_repository.ecs_image_repo.name
   image_tag = each.value
 }
