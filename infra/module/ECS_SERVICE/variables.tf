@@ -22,6 +22,10 @@ variable "containers" {
   }))
 }
 
+
+variable "execution_role" {
+  type = string
+}
 # variable "subnet" {
 #   type = string
 # }
