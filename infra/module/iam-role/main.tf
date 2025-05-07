@@ -21,7 +21,7 @@ resource "aws_iam_role" "web_iam_assume_role" {
 /* IAM Inline Policy */
 resource "aws_iam_role_policy" "web_iam_inline_policy" {
   name = var.iam_inline_policy
-  role = aws_iam_role.web_assume_iam_role.id
+  role = aws_iam_role.web_iam_assume_role.id
 
     policy = jsonencode(
       {
