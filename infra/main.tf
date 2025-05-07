@@ -18,9 +18,7 @@ module "web_ecr_image" {
 module "web_ecs_service" {
   source          = "./module/ECS_SERVICE"
   execution_role = module.web_iam_role.web_iam_role_ecs
-  iam_role_policy = module.web_iam_role.web_iam_role_policy
   ecs_cluster     = "web_ecs_cluster"
-  iam_role        = module.web_iam_role.web_iam_role_ecs
   containers = {
     "client_container" = {
       task_defination = "client_task_defination"

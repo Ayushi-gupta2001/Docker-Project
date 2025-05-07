@@ -2,14 +2,6 @@ variable "ecs_cluster" {
   type = string
 }
 
-variable "iam_role" {
-  type = string
-}
-
-variable "iam_role_policy" {
-  type = string
-}
-
 variable "containers" {
   type = map(object({
     task_defination = string
@@ -21,7 +13,6 @@ variable "containers" {
     service_name    = string
   }))
 }
-
 
 variable "execution_role" {
   type = string

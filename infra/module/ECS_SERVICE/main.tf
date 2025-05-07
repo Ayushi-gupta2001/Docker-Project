@@ -42,8 +42,6 @@ resource "aws_ecs_task_definition" "web_task_defination" {
 /* ECS services */
 resource "aws_ecs_service" "web_service" {
   cluster         = aws_ecs_cluster.web_ecs_clutser.id
-  iam_role        = var.iam_role
-  depends_on      = [var.iam_role_policy]
   for_each        = var.containers
   name            = each.value.service_name
   task_definition = each.value.task_defination
