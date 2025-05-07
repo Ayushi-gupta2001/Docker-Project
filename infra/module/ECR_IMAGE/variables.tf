@@ -3,5 +3,5 @@ variable "ecr_image_repo" {
 }
 
 variable "image_tag" {
-  type = map(string)
+  type = list(string)
 }

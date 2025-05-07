@@ -12,6 +12,7 @@ module "web_iam_role" {
 module "web_ecr_image" {
   source         = "./module/ECR_IMAGE"
   ecr_image_repo = "web_ecs_image_repo"
+  image_tag = ["client_latest", "server_latest"]
 }
 
 /* Module for ECS Service creation */
