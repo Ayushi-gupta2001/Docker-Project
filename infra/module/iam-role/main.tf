@@ -35,7 +35,7 @@ resource "aws_iam_role_policy" "web_iam_inline_policy" {
             "ecr:GetAuthorizationToken"
           ]
           Effect   = "Allow"
-          resource = "*"
+          Resource = "*"
         },
         {
           Action = [
@@ -44,7 +44,7 @@ resource "aws_iam_role_policy" "web_iam_inline_policy" {
             "logs:CreateLogGroup"
           ]
           Effect   = "Allow"
-          resource = "*"
+          Resource = "*"
         }
       ]
     }
