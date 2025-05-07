@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "web_ecs_clutser" {
 resource "aws_ecs_task_definition" "web_task_defination" {
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc" // allow to share same network on same vpc and security groups connected to it
-  cpu                      = 10
+  cpu                      = 256
   memory                   = 512
   for_each                 = var.containers
   family                   = each.value.task_defination ## name of the task definition
@@ -55,7 +55,7 @@ resource "aws_ecs_service" "web_service" {
   depends_on      = [var.iam_role_policy]
   for_each        = var.containers
   name            = each.value.service_name
-  task_definition = each.value.task_defination
+  task_definition = aws_ecs_task_definition.web_task_defination[each.key].arn
   # network_configuration {
   #   subnets = [var.subnet]
   #   security_groups = [var.security_groups]

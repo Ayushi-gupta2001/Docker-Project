@@ -23,36 +23,36 @@ resource "aws_iam_role_policy" "web_iam_inline_policy" {
   name = var.iam_inline_policy
   role = aws_iam_role.web_iam_assume_role.id
 
-    policy = jsonencode(
-      {
-        Version = "2012-10-17"
-        Statement = [
-          {
-            Action = [
-              "ecr:BatchGetImage",
-              "ecr:BatchCheckLayerAvailability",
-              "ecr:GetDownloadUrlForLayer",
-              "ecr:GetAuthorizationToken"
-            ]
-            Effect   = "Allow"
-            resource = "*"
-          },
-          {
-            Action = [
-              "logs:CreateLogStream",
-              "logs:PutLogEvents",
-              "logs:CreateLogGroup"
-            ]
-            Effect   = "Allow"
-            resource = "*"
-          },
-          {
-            Action   = ["sns:Publish"]
-            Effect   = "Allow"
-            resource = "${var.sns_topic}"
-          }
-        ]
-     }
-    )
+  policy = jsonencode(
+    {
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action = [
+            "ecr:BatchGetImage",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:GetAuthorizationToken"
+          ]
+          Effect   = "Allow"
+          resource = "*"
+        },
+        {
+          Action = [
+            "logs:CreateLogStream",
+            "logs:PutLogEvents",
+            "logs:CreateLogGroup"
+          ]
+          Effect   = "Allow"
+          resource = "*"
+        },
+        {
+          Action   = ["sns:Publish"]
+          Effect   = "Allow"
+          resource = var.sns_topic
+        }
+      ]
+    }
+  )
 }
 
