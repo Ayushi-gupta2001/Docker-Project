@@ -4,7 +4,7 @@ resource "aws_ecr_repository" "ecs_image_repo" {
   image_tag_mutability = "MUTABLE" ## to overwrite with different image but with same tag
 
   image_scanning_configuration {
-    scan_on_push = true    ## it adds pricing
+    scan_on_push = true ## it adds pricing
   }
 }
 

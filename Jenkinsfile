@@ -62,6 +62,7 @@ pipeline {
             steps {
                 sh '''
                 cd ./infra
+                echo 'structure the infrastructure'
                 terraform init
                 terraform apply --auto-approve
                 '''
