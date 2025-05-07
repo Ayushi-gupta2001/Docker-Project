@@ -3,5 +3,5 @@ output "web_iam_role_ecs" {
 }
 
 output "web_iam_role_policy" {
-  value = aws_iam_role_policy.web_iam_inline_policy.id
+  value = aws_iam_role_policy.web_iam_inline_policy.name
 }

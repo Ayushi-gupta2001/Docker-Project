@@ -7,6 +7,7 @@ resource "aws_ecs_cluster" "web_ecs_clutser" {
 /* This task definition will create one task definition per container */
 resource "aws_ecs_task_definition" "web_task_defination" {
   requires_compatibilities = ["FARGATE"]
+  execution_role_arn = var.execution_role
   network_mode             = "awsvpc" // allow to share same network on same vpc and security groups connected to it
   cpu                      = 256
   memory                   = 512
