@@ -5,7 +5,6 @@ module "web_iam_role" {
   source            = "./module/iam-role"
   iam_assume_role   = "web_assume_iam_role"
   iam_inline_policy = "web_iam_inline_policy"
-  sns_topic         = "web_sns_topic"
 }
 
 /* Module for ECR Image creation */
@@ -29,7 +28,6 @@ module "web_ecs_service" {
       host_port       = 3000
       container_port  = 3000
       environment     = var.client_env
-      volume_storage  = "client_storage"
       service_name    = "client_service"
     }
     "server_container" = {
@@ -39,7 +37,6 @@ module "web_ecs_service" {
       host_port       = 9000
       container_port  = 9000
       environment     = var.server_env
-      volume_storage  = "server_storage"
       service_name    = "server_service"
     }
     "database_container" = {
@@ -49,7 +46,6 @@ module "web_ecs_service" {
       host_port       = 5432
       container_port  = 5432
       environment     = var.database_env
-      volume_storage  = "database_storage"
       service_name    = "postgress_service"
     }
   }

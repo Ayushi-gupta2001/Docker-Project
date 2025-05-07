@@ -45,11 +45,6 @@ resource "aws_iam_role_policy" "web_iam_inline_policy" {
           ]
           Effect   = "Allow"
           resource = "*"
-        },
-        {
-          Action   = ["sns:Publish"]
-          Effect   = "Allow"
-          resource = var.sns_topic
         }
       ]
     }

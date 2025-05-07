@@ -37,11 +37,6 @@ resource "aws_ecs_task_definition" "web_task_defination" {
     ]
   )
 
-  volume {
-    name      = each.value.volume_storage
-    host_path = "/etc/${each.value.volume_storage}"
-  }
-
   placement_constraints {
     type       = "memberOf"
     expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
@@ -55,7 +50,7 @@ resource "aws_ecs_service" "web_service" {
   depends_on      = [var.iam_role_policy]
   for_each        = var.containers
   name            = each.value.service_name
-  task_definition = aws_ecs_task_definition.web_task_defination[each.key].arn
+  task_definition = each.value.task_defination
   # network_configuration {
   #   subnets = [var.subnet]
   #   security_groups = [var.security_groups]

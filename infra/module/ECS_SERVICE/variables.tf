@@ -18,7 +18,6 @@ variable "containers" {
     host_port       = optional(number)
     container_port  = optional(number)
     environment     = map(string)
-    volume_storage  = string
     service_name    = string
   }))
 }
