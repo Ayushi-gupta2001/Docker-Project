@@ -36,11 +36,6 @@ resource "aws_ecs_task_definition" "web_task_defination" {
       }
     ]
   )
-
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
 }
 
 /* ECS services */
