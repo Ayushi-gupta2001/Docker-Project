@@ -14,11 +14,10 @@ resource "aws_vpc" "vpc" {
 /* Subnet */
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.vpc.id
-  cidr_block = cidrsubnet(aws_vpc.vpc.cidr_block, 8, count.index)
-  count      = 2
+  cidr_block = cidrsubnet(aws_vpc.vpc.cidr_block, 8, 0)
 
   tags = {
-    name = "${var.public_subnet}-${count.index}"
+    name = "${var.public_subnet}-0"
   }
 }
 
@@ -47,7 +46,6 @@ resource "aws_internet_gateway" "internet_gateway" {
 
 /* route table association */
 resource "aws_route_table_association" "route_table_association" {
-    count =  2
-    subnet_id = aws_subnet.public_subnet[count.index].id
+    subnet_id = aws_subnet.public_subnet.id
     route_table_id =  aws_route_table.route_table.id
 }
