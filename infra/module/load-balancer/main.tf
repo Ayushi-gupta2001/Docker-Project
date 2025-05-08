@@ -5,7 +5,7 @@ resource "aws_lb" "load_balancer" {
   internal =  false  ## public load balancer 
   load_balancer_type = "application"
   security_groups = [ var.security_group ]
-  subnets = [ var.subnets ]
+  subnets = [ var.subnet_id ]
 }
 
 resource "aws_lb_listener" "lb_listener" {

@@ -51,9 +51,9 @@ resource "aws_ecs_service" "web_service" {
     security_groups = [var.security_group]
   }
 
-  # load_balancer {
-  #   target_group_arn = var.lb_listener_group
-  #   container_name = module.web_ecs_service.web_ecs_task_defination
-  #   container_port = 3000
-  # }
+  load_balancer {
+    target_group_arn = var.lb_listener_group
+    container_name = var.container_name
+    container_port = var.container_port
+  }
 }

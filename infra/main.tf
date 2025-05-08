@@ -50,8 +50,9 @@ module "web_ecs_service" {
   }
   subnet         = module.web_vpc.subnet_id
   security_group = module.web_security_group.security_group
-  # lb_listener_group = module.web_load_balancer.web_lb_target_group
-  # container_name    = "swde"
+  lb_listener_group = module.web_load_balancer.web_lb_target_group
+  container_name = "client_container"
+  container_port = 3000
 }
 
 /* Module for VPC */
@@ -71,10 +72,10 @@ module "web_security_group" {
 }
 
 /* Module for load_balancer */
-# module "web_load_balancer" {
-#     source = "./module/load-balancer"
-#     name = "web_load_balancer"
-#     security_groups = module.web_security_group.security_group
-#     subnets = module.
-
-# }
+module "web_load_balancer" {
+    source = "./module/load-balancer"
+    load_balancer = "web_load_balancer"
+    subnet_id = module.web_vpc.subnet_id
+    vpc_id = module.web_vpc.vpc_id
+    security_group = module.web_security_group.security_group
+}

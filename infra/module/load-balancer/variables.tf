@@ -6,7 +6,7 @@ variable "security_group" {
   type = string
 }
 
-variable "subnets" {
+variable "subnet_id" {
   type = string
 }
 
