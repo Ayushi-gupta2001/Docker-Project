@@ -19,7 +19,7 @@ variable "execution_role" {
 }
 
 variable "subnet" {
-  type = string
+  type = list(string)
 }
 
 variable "security_group" {

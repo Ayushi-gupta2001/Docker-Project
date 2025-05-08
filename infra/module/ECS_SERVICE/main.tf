@@ -47,7 +47,7 @@ resource "aws_ecs_service" "web_service" {
   task_definition = each.value.task_defination
 
   network_configuration {
-    subnets = [var.subnet]
+    subnets = var.subnet
     security_groups = [var.security_group]
   }
 
