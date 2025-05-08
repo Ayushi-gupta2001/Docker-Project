@@ -48,6 +48,6 @@ resource "aws_internet_gateway" "internet_gateway" {
 /* route table association */
 resource "aws_route_table_association" "route_table_association" {
     count =  2
-    subnet_id = aws_subnet.public_subnet[count.index]
+    subnet_id = aws_subnet.public_subnet[count.index].id
     route_table_id =  aws_route_table.route_table.id
 }
