@@ -7,7 +7,7 @@ variable "route_table" {
 }
 
 variable "public_subent" {
-  type = string
+  type = list(string)
 }
 
 variable "internet_gateway" {
