@@ -24,7 +24,7 @@ resource "aws_subnet" "public_subnet" {
 
 /* Route table */
 resource "aws_route_table" "route_table" {
-  vpc_id = aws.vpc.id
+  vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -46,8 +46,8 @@ resource "aws_internet_gateway" "internet_gateway" {
 }
 
 /* route table association */
-
 resource "aws_route_table_association" "route_table_association" {
-    subnet_id = aws_subnet.public_subnet.id
-    route_table_id =  aws_route_tables.route_table.id
+    count =  2
+    subnet_id = aws_subnet.public_subnet[count.index]
+    route_table_id =  aws_route_table.route_table.id
 }
