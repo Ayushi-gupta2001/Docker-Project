@@ -20,7 +20,7 @@ resource "aws_lb_listener" "lb_listener" {
 }
 
 resource "aws_lb_target_group" "lb_target_group" {
-  name = "web_lb_target_group"
+  name = "web-lb-target-group"
   port = 80
   protocol = "HTTP"
   target_type = "ip"
