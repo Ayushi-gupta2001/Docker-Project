@@ -77,5 +77,5 @@ module "web_load_balancer" {
     load_balancer = "web_load_balancer"
     subnet_id = [ module.web_vpc.subnet_id ]
     vpc_id = module.web_vpc.vpc_id
-    security_group = [ module.web_security_group.security_group ]
+    security_group = module.web_security_group.security_group
 }

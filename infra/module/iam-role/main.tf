@@ -19,9 +19,8 @@ resource "aws_iam_role" "web_iam_assume_role" {
 }
 
 /* IAM Inline Policy */
-resource "aws_iam_role_policy" "web_iam_inline_policy" {
+resource "aws_iam_policy" "web_iam_inline_policy" {
   name = var.iam_inline_policy
-  role = aws_iam_role.web_iam_assume_role.id
 
   policy = jsonencode(
     {
@@ -51,3 +50,8 @@ resource "aws_iam_role_policy" "web_iam_inline_policy" {
   )
 }
 
+/* Attachement of IAM role policy */
+resource "aws_iam_role_policy_attachment" "web_iam_role_policy_attachement" {
+  role       = aws_iam_role.web_iam_assume_role.name
+  policy_arn = aws_iam_policy.web_iam_inline_policy.arn
+}
