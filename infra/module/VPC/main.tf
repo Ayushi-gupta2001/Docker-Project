@@ -18,7 +18,7 @@ resource "aws_subnet" "public_subnet" {
   count      = 2
 
   tags = {
-    name = "${var.public_subent}-${count.index}"
+    name = "${var.public_subnet}-${count.index}"
   }
 }
 

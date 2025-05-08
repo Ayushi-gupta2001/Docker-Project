@@ -59,7 +59,7 @@ module "web_vpc" {
   source           = "./module/VPC"
   vpc              = "web_vpc"
   route_table      = "web_route_tables"
-  public_subent    = "web_public_subnet"
+  public_subnet    = "web_public_subnet"
   internet_gateway = "web_internet_gateway"
 }
 

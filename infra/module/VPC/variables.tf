@@ -6,10 +6,10 @@ variable "route_table" {
   type = string
 }
 
-variable "public_subent" {
-  type = list(string)
+variable "internet_gateway" {
+  type = string
 }
 
-variable "internet_gateway" {
+variable "public_subnet" {
   type = string
 }
