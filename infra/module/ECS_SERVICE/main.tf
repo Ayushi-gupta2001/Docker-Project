@@ -45,10 +45,11 @@ resource "aws_ecs_service" "web_service" {
   for_each        = var.containers
   name            = each.value.service_name
   task_definition = each.value.task_defination
-  # network_configuration {
-  #   subnets = [var.subnet]
-  #   security_groups = [var.security_groups]
-  # }
+
+  network_configuration {
+    subnets = [var.subnet]
+    security_groups = [var.security_group]
+  }
 
   # load_balancer {
   #   target_group_arn = var.lb_listener_group

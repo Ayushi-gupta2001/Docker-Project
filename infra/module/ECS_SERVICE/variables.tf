@@ -17,13 +17,14 @@ variable "containers" {
 variable "execution_role" {
   type = string
 }
-# variable "subnet" {
-#   type = string
-# }
 
-# variable "security_groups" {
-#   type = string
-# }
+variable "subnet" {
+  type = string
+}
+
+variable "security_group" {
+  type = string
+}
 
 # variable "lb_listener_group" {
 #   type = string
