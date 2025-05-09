@@ -12,22 +12,22 @@ pipeline {
     }
 
     stages {
-        stage('1. Build docker image for client and server') {
+        stage ('1. Create  AWS infra using terraform') {
+            steps {
+                sh '''
+                    cd ./infra
+                    terraform init
+                    terraform apply --auto-approve
+                '''
+            }
+        }
+
+        stage('2. Build docker image for client and server') {
             steps {
                     script {
                         clientImage = docker.build('client:latest', './client')
                         serverImage = docker.build('server:latest', './server')
                     }
-            }
-        }
-
-        stage('2. Create ECR repo into AWS using terraform') {
-            steps {
-                sh '''
-                cd ./infra
-                terraform init
-                terraform apply -target=module.web_ecr_image --auto-approve
-                '''
             }
         }
 
@@ -58,11 +58,11 @@ pipeline {
                 }
             }
 
-        stage('5. Provision the infra for ECS cluster') {
+        stage('5. Finally refershing state of ECS') {
             steps {
                 sh '''
                 cd ./infra
-                echo 'structure the infrastructure'
+                echo 'refreshing the infrastructure'
                 terraform apply --auto-approve
                 '''
             }
