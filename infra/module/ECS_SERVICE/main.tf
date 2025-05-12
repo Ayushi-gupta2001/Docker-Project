@@ -51,13 +51,13 @@ resource "aws_ecs_service" "web_service" {
     security_groups = [var.security_group]
   }
 
-   dynamic "load_balancer" {
-    for_each = each.value.container_name == var.container_name ? [1] : []
-    content {
-      target_group_arn = var.lb_listener_group
-      container_name = each.value.container_name
-      container_port = each.value.container_port
-    }
-  }
+  #  dynamic "load_balancer" {
+  #   for_each = each.value.container_name == var.container_name ? [1] : []
+  #   content {
+  #     target_group_arn = var.lb_listener_group
+  #     container_name = each.value.container_name
+  #     container_port = each.value.container_port
+  #   }
+  # }
 
 }

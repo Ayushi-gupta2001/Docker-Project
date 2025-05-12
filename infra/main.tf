@@ -32,13 +32,13 @@ module "web_security_group" {
 
 
 /* Module for load_balancer */
-module "web_load_balancer" {
-    source = "./module/load-balancer"
-    load_balancer = "web-load-balancer"
-    subnet_id = [module.web_vpc.subnet_id]
-    vpc_id = module.web_vpc.vpc_id
-    security_group = module.web_security_group.security_group
-}
+# module "web_load_balancer" {
+#     source = "./module/load-balancer"
+#     load_balancer = "web-load-balancer"
+#     subnet_id = [module.web_vpc.subnet_id]
+#     vpc_id = module.web_vpc.vpc_id
+#     security_group = module.web_security_group.security_group
+# }
 
 /* Module for ECS Service creation */
 module "web_ecs_service" {
@@ -76,7 +76,7 @@ module "web_ecs_service" {
   }
   subnet         = [module.web_vpc.subnet_id]
   security_group = module.web_security_group.security_group
-  lb_listener_group = module.web_load_balancer.web_lb_target_group
-  container_name = "client_container"
-  container_port = 3000
+  # lb_listener_group = module.web_load_balancer.web_lb_target_group
+  # container_name = "client_container"
+  # container_port = 3000
 }
