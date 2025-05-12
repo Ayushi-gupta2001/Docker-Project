@@ -30,10 +30,10 @@ variable "security_group" {
 #   type = string
 # }
 
-variable "container_name" {
-  type = string
-}
+# variable "container_name" {
+#   type = string
+# }
 
-variable "container_port" {
-  type = string
-}
+# variable "container_port" {
+#   type = string
+# }
