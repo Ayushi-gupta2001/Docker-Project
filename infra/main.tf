@@ -30,6 +30,16 @@ module "web_security_group" {
   security_group = "web_security_group"
 }
 
+
+/* Module for load_balancer */
+module "web_load_balancer" {
+    source = "./module/load-balancer"
+    load_balancer = "web-load-balancer"
+    subnet_id = [module.web_vpc.subnet_id]
+    vpc_id = module.web_vpc.vpc_id
+    security_group = module.web_security_group.security_group
+}
+
 /* Module for ECS Service creation */
 module "web_ecs_service" {
   source         = "./module/ECS_SERVICE"
@@ -69,13 +79,4 @@ module "web_ecs_service" {
   lb_listener_group = module.web_load_balancer.web_lb_target_group
   container_name = "client_container"
   container_port = 3000
-}
-
-/* Module for load_balancer */
-module "web_load_balancer" {
-    source = "./module/load-balancer"
-    load_balancer = "web-load-balancer"
-    subnet_id = [module.web_vpc.subnet_id]
-    vpc_id = module.web_vpc.vpc_id
-    security_group = module.web_security_group.security_group
 }
